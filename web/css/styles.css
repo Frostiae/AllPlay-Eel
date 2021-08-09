@@ -10,7 +10,7 @@ html, body {
 }
 
 body {
-  background-color: #22272e;
+  background: linear-gradient(180deg, rgba(30,34,40,1) 0%, rgba(34,39,46,1) 100%);
   font-family: 'Poppins';
 }
 

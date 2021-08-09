@@ -17,6 +17,11 @@ def authorize_spotify():
 
 
 @eel.expose
+def is_logged_in() -> bool:
+    return spotify is not None
+
+
+@eel.expose
 def get_tracks(query: str) -> list:
     if spotify:
         results = spotify.search(q=query)['tracks']['items']

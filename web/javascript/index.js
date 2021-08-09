@@ -10,6 +10,8 @@ const addMenu = document.getElementById('addMenu');
 
 loginBtn.addEventListener('click', () => authorize_spotify());
 
+var logged_in_spotify = false;
+
 searchField.addEventListener("keyup", function(e) {
     if (e.key === "Enter") {
         search(searchField.value);
@@ -24,6 +26,10 @@ document.addEventListener('click', () => {
 
 function authorize_spotify() {
     eel.authorize_spotify();
+    eel.is_logged_in()(function(res) {
+        logged_in_spotify = JSON.parse(res);
+        loginBtn.innerText = 'Logged in'
+    })
 }
 
 function search(query) {
