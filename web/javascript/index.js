@@ -85,10 +85,12 @@ function create_youtube_list(results) {
         var figure = document.createElement('figure');
         var img = document.createElement('img');
         img.src = video.snippet.thumbnails.default.url;
+        
         var figcaption = document.createElement('figcaption');
         figcaption.addEventListener('click', () => {
             play_youtube(video.id.videoId);
         })
+
         var span = document.createElement('span');
         span.innerText = video.snippet.title;
         var description = document.createElement('div')

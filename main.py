@@ -15,16 +15,6 @@ def initialize():
     youtubeApi.setup()
 
 
-@eel.expose                         # Expose this function to Javascript
-def say_hello_py(x):
-    print('Hello from %s' % x)
-
-
-@eel.expose
-def pycall():
-    return 'This is a python call!'
-
-
 @eel.expose
 def search(query: str):
     results = {'spotify': spotifyApi.get_tracks(query), 'youtube': youtubeApi.get_videos(query)}

@@ -1,5 +1,6 @@
 import eel
 import spotipy
+import credentials
 from spotipy.oauth2 import SpotifyOAuth
 
 spotify = None
@@ -8,8 +9,8 @@ spotify = None
 @eel.expose
 def authorize_spotify():
     global spotify
-    spotify = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id="491a1858834941e0a187c5ac7aa8f3d3",
-                                                        client_secret="b6d3226429c6475ebb31370c98589391",
+    spotify = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=credentials.SPOTIFY_CLIENT_ID,
+                                                        client_secret=credentials.SPOTIFY_CLIENT_SECRET,
                                                         redirect_uri="http://localhost:8000",
                                                         scope="user-library-read"))
     print("Spotify authorization completed.")

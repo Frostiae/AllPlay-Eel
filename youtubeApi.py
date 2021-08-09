@@ -1,9 +1,9 @@
 import googleapiclient.discovery
 import googleapiclient.errors
+import credentials
 import json
 
 youtube = None
-API_KEY = 'AIzaSyCxX07j6rjmih5Exm4MFd5qtU4OgL2rIOQ'
 
 
 def setup():
@@ -11,7 +11,7 @@ def setup():
     api_version = "v3"
 
     global youtube
-    youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=API_KEY)
+    youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=credentials.YOUTUBE_API_KEY)
     print(youtube)
 
 
