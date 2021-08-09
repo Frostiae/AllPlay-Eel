@@ -4,6 +4,11 @@ const searchField = document.getElementById("searchField")
 const playlists_container = document.getElementById("playlistscontainer");
 const youtube_results = document.getElementById("youtubeResults");
 const spotify_results = document.getElementById("spotifyResults");
+const loginBtn = document.getElementById('loginbtn');
+const newPlaylistBtn = document.getElementById('newPlaylistBtn');
+
+loginBtn.addEventListener('click', () => authorize_spotify());
+newPlaylistBtn.addEventListener('click', () => create_playlist());
 
 searchField.addEventListener("keyup", function(e) {
     if (e.key === "Enter") {
@@ -85,7 +90,7 @@ function create_youtube_list(results) {
         var figure = document.createElement('figure');
         var img = document.createElement('img');
         img.src = video.snippet.thumbnails.default.url;
-        
+
         var figcaption = document.createElement('figcaption');
         figcaption.addEventListener('click', () => {
             play_youtube(video.id.videoId);
@@ -96,7 +101,9 @@ function create_youtube_list(results) {
         var description = document.createElement('div')
         description.className = 'figdescription';
         description.innerText = video.snippet.channelTitle;
+
         var add_btn = document.createElement('button');
+
         add_btn.innerText = 'Add';
 
         figure.appendChild(img);

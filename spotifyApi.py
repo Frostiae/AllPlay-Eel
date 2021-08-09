@@ -16,6 +16,7 @@ def authorize_spotify():
     print("Spotify authorization completed.")
 
 
+@eel.expose
 def get_tracks(query: str) -> list:
     if spotify:
         results = spotify.search(q=query)['tracks']['items']

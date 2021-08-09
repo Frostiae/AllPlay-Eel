@@ -1,7 +1,6 @@
 import googleapiclient.discovery
 import googleapiclient.errors
 import credentials
-import json
 
 youtube = None
 
