@@ -10,6 +10,7 @@ import os.path
 eel.init('web', allowed_extensions=['.js', '.html'])
 
 playlists = []
+current_playlist = None
 
 
 def initialize():
@@ -24,7 +25,6 @@ def initialize():
             playlists.append(playlist)
         settings.close()
 
-    print(playlists)
     youtubeApi.setup()
 
 
@@ -53,6 +53,19 @@ def create_playlist() -> str:
 @eel.expose
 def get_playlists() -> str:
     return json.dumps([pl.__dict__ for pl in playlists])
+
+
+@eel.expose
+def set_current_playlist(playlist) -> None:
+    global current_playlist
+    current_playlist = Playlist('')
+    current_playlist.deserialize(playlist)
+    print(current_playlist)
+
+
+@eel.expose
+def get_current_playlist() -> str:
+    return json.dumps(current_playlist.__dict__)
 
 
 initialize()

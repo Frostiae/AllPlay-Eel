@@ -1,31 +1,17 @@
 import { player, loadVideo, createPlayer } from './youtube_player.js';
 
 const searchField = document.getElementById("searchField")
-const playlists_container = document.getElementById("playlistscontainer");
 const youtube_results = document.getElementById("youtubeResults");
 const spotify_results = document.getElementById("spotifyResults");
 const loginBtn = document.getElementById('loginbtn');
-const newPlaylistBtn = document.getElementById('newPlaylistBtn');
 
 loginBtn.addEventListener('click', () => authorize_spotify());
-newPlaylistBtn.addEventListener('click', () => create_playlist());
 
 searchField.addEventListener("keyup", function(e) {
     if (e.key === "Enter") {
         search(searchField.value);
     }
 })
-
-var playlists = [];
-
-async function initialize() {
-    await eel.get_playlists()(function(res) {
-        playlists = JSON.parse(res);
-        update_playlists_view();
-    })
-}
-
-await initialize();
 
 function authorize_spotify() {
     eel.authorize_spotify();
@@ -122,22 +108,6 @@ function create_youtube_list(results) {
         figcaption.appendChild(add_btn);
 
         youtube_results.appendChild(figure);
-    });
-}
-
-async function create_playlist() {
-    eel.create_playlist()(function(res) {
-        playlists = JSON.parse(res);
-        update_playlists_view();
-    })
-}
-
-function update_playlists_view() {
-    playlists_container.innerHTML = ''; // Remove all the children that exist already
-    playlists.forEach(playlist => {
-        var listing = document.createElement('a');
-        listing.innerHTML = playlist.name;
-        playlists_container.appendChild(listing);
     });
 }
 
