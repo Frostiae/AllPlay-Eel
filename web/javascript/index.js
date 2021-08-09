@@ -54,6 +54,35 @@ function create_spotify_list(results) {
 
     results.forEach(track => {
         var figure = document.createElement('figure');
+
+        figure.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            addMenu.innerHTML = '';
+
+            playlists.forEach(pl => {
+                var menuItem = document.createElement('menu');
+                menuItem.title = pl.name;
+                menuItem.addEventListener('click', () => {
+                    var song = {
+                        'title': track.name,
+                        'artist': track.artists[0].name,
+                        'duration': 0,
+                        'service_img_url': '../images/spotify.png',
+                        'banner_url': '', // todo
+                        'link': '', // todo
+                        'type': 2 // 2 = Spotify
+                    };
+
+                    eel.add_song_to_playlist(pl, song);
+                })
+                addMenu.appendChild(menuItem);
+            });
+
+            addMenu.style.display = 'block';
+            addMenu.style.left = (event.pageX - 10) + 'px';
+            addMenu.style.top = (event.pageY - 10) + 'px';
+        }, false)
+
         var img = document.createElement('img');
         img.src = track.album.images[0].url;
         var figcaption = document.createElement('figcaption');

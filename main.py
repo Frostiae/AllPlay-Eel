@@ -47,14 +47,14 @@ def create_playlist(name: str) -> str:
     playlists.append(playlist)
     print(playlists)
     with open('playlists.json', 'w+') as f:
-        json.dump([pl.reprJSON() for pl in playlists], f, cls=Encoder)
+        json.dump([pl.reprJSON() for pl in playlists], f, cls=Encoder, indent=3)
 
-    return json.dumps([pl.reprJSON() for pl in playlists], cls=Encoder)
+    return json.dumps([pl.reprJSON() for pl in playlists], cls=Encoder, indent=3)
 
 
 @eel.expose
 def get_playlists() -> str:
-    return json.dumps([pl.reprJSON() for pl in playlists], cls=Encoder)
+    return json.dumps([pl.reprJSON() for pl in playlists], cls=Encoder, indent=3)
 
 
 @eel.expose

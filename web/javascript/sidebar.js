@@ -15,7 +15,16 @@ async function initialize() {
 await initialize();
 
 async function create_playlist() {
-    var name = prompt('Enter a title for the playlist', 'New playlist');
+    var name = prompt('Enter a unique title', 'New playlist');
+
+    /*
+    playlists.forEach(pl => {
+        if (pl.name == name) {
+            alert(name + " already exists.");
+        }
+    });
+    */
+
     eel.create_playlist(name)(function(res) {
         playlists = JSON.parse(res);
         update_playlists_view();
