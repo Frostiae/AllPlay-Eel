@@ -1,3 +1,5 @@
+import { player, loadVideo, createPlayer } from './youtube_player.js';
+
 const searchField = document.getElementById("searchField")
 const playlists_container = document.getElementById("playlistscontainer");
 const youtube_results = document.getElementById("youtubeResults");
@@ -29,8 +31,16 @@ function create_spotify_list(results) {
     spotify_results.innerHTML = '';
     console.log(results);
 
-    if (!results) {
-        spotify_results.innerText = 'No results found.';
+    if (results.length == 0) {
+        var figure = document.createElement('figure');
+        var figcaption = document.createElement('figcaption');
+        var span = document.createElement('span');
+        span.innerText = 'No results found.';
+
+        figcaption.appendChild(span);
+        figure.appendChild(figcaption);
+        spotify_results.appendChild(figure);
+        return;
     }
 
     results.forEach(track => {
@@ -60,7 +70,14 @@ function create_youtube_list(results) {
     youtube_results.innerHTML = ''; // Remove all the children that exist already
 
     if (!results.items) {
-        youtube_results.innerText = 'No results found.';
+        var figure = document.createElement('figure');
+        var figcaption = document.createElement('figcaption');
+        var span = document.createElement('span');
+        span.innerText = 'No results found.';
+
+        figcaption.appendChild(span);
+        figure.appendChild(figcaption);
+        youtube_results.appendChild(figure);
         return;
     }
 
@@ -69,6 +86,9 @@ function create_youtube_list(results) {
         var img = document.createElement('img');
         img.src = video.snippet.thumbnails.default.url;
         var figcaption = document.createElement('figcaption');
+        figcaption.addEventListener('click', () => {
+            play_youtube(video.id.videoId);
+        })
         var span = document.createElement('span');
         span.innerText = video.snippet.title;
         var description = document.createElement('div')
@@ -103,4 +123,12 @@ function update_playlists_view() {
         listing.innerHTML = playlist.name;
         playlists_container.appendChild(listing);
     });
+}
+
+function play_youtube(link) {
+    if (!player) {
+        createPlayer(link);
+    } else {
+        loadVideo(link);
+    }
 }

@@ -55,6 +55,12 @@ header > strong > span {
     color: #4476ad;
 }
 
+.login {
+  background-color: #2d333b;
+  color: #a4aab7;
+  height: 30px;
+}
+
 .sidepanel {
   width: 18%;
   height: 100%;
@@ -310,8 +316,14 @@ input[type=text]:hover {
   opacity: 0.8;
 }
 
+button {
+  transition: 0.15s;
+}
+
 button:hover {
   cursor:pointer;
+  opacity: 70%;
+  border-radius: 5px;
 }
 
 input[type=range] {

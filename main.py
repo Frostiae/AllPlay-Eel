@@ -27,7 +27,7 @@ def pycall():
 
 @eel.expose
 def search(query: str):
-    results = {'spotify': spotifyApi.get_tracks(query), 'youtube': []}
+    results = {'spotify': spotifyApi.get_tracks(query), 'youtube': youtubeApi.get_videos(query)}
     return json.dumps(results)
 
 
