@@ -9,6 +9,28 @@
     <script type="text/javascript" src="/eel.js"></script>
 </head>
 <body>
+      <div class="sidepanel">
+          <a href="index.html">
+            <img src="../images/btn-search.png">
+            <div class="sidepanelBtn">
+              Search
+            </div>
+          </a>
+
+          <a onclick="create_playlist()">
+            <img src="../images/btn-new.png">
+            <div class="sidepanelBtn">
+              New playlist
+            </div>
+          </a>
+
+          <hr>
+
+          <div id="playlistscontainer">
+
+          </div>
+
+    </div>
   {% block content %}
   {% endblock %}
 </body>

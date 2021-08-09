@@ -27,12 +27,11 @@ def search(query: str):
 
 @eel.expose
 def create_playlist():
-    playlist = Playlist.Playlist("New Playlist " + str(len(playlists)))
+    playlist = Playlist.Playlist("New Playlist " + str(len(playlists) + 1))
     playlists.append(playlist)
     print(playlists)
     return json.dumps([pl.__dict__ for pl in playlists])
 
 
 say_hello_py('Python World!')
-eel.say_hello_js('Python World!')   # Call a Javascript function
-eel.start('templates/index.html', size=(1400, 700), jinja_templates='templates')
+eel.start('templates/index.html', size=(1400, 700), jinja_templates='templates', playlists=playlists)
