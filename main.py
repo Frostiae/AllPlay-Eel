@@ -50,5 +50,10 @@ def create_playlist() -> str:
     return json.dumps([pl.__dict__ for pl in playlists])
 
 
+@eel.expose
+def get_playlists() -> str:
+    return json.dumps([pl.__dict__ for pl in playlists])
+
+
 initialize()
 eel.start('templates/index.html', size=(1400, 700), jinja_templates='templates', playlists=playlists)

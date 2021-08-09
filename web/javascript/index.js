@@ -18,6 +18,15 @@ searchField.addEventListener("keyup", function(e) {
 
 var playlists = [];
 
+async function initialize() {
+    await eel.get_playlists()(function(res) {
+        playlists = JSON.parse(res);
+        update_playlists_view();
+    })
+}
+
+await initialize();
+
 function authorize_spotify() {
     eel.authorize_spotify();
 }
@@ -119,10 +128,8 @@ function create_youtube_list(results) {
 async function create_playlist() {
     eel.create_playlist()(function(res) {
         playlists = JSON.parse(res);
+        update_playlists_view();
     })
-
-    console.log(playlists);
-    update_playlists_view();
 }
 
 function update_playlists_view() {
