@@ -4,6 +4,7 @@ from spotipy.oauth2 import SpotifyOAuth
 
 spotify = None
 
+
 @eel.expose
 def authorize_spotify():
     global spotify
@@ -14,12 +15,9 @@ def authorize_spotify():
     print("Spotify authorization completed.")
 
 
-@eel.expose
-def get_tracks(query: str):
+def get_tracks(query: str) -> list:
     if spotify:
         results = spotify.search(q=query)['tracks']['items']
-        for song in results:
-            # Return instead of print here eventually for JS to read it in JSON
-            print(song['name'])
+        return results
     else:
-        return False  # Read this in JS and give proper UI
+        return []  # Spotify is probably not authorized

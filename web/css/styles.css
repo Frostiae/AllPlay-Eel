@@ -137,24 +137,45 @@ header > strong > span {
 .appservice .resultsbox figure {
   display: flex;
   flex-direction: row;
-  margin-top: 15px;
+  margin-top: 15px !important;
   margin-right: 9px;
-  margin-left: 9px;
+  margin-left: 9px !important;
   border-bottom: 1px solid #39414b;
   padding-bottom: 8px;
 }
 
-.resultsbox figcaption {
+.resultsbox figure img {
+  order: 0;
+  width: 105px;
+}
+
+.resultsbox figure button {
+  border-radius: 0px;
+  border: 0px;
+  background-color: #a4aab7;
+  color: #39414b;
+  display: none;
+}
+
+.resultsbox figure:hover {
+  opacity: 80%;
+}
+
+.resultsbox figure:hover button {
+  display: block;
+}
+
+.resultsbox figure figcaption {
   margin-left: 8px;
   display: flex;
   flex-direction: column;
   order: 1;
-  font-size: 20px;
+  font-size: 20px !important;
   vertical-align: top;
   overflow-x: clip;
 }
 
-.resultsbox figcaption .figdescription {
+.resultsbox figure figcaption .figdescription {
   font-size: 15px;
   color:#a4aab7;
   opacity: 50%;

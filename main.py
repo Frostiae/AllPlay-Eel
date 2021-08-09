@@ -27,12 +27,17 @@ def pycall():
 
 @eel.expose
 def search(query: str):
-    spotifyApi.get_tracks(query)
-    youtubeApi.get_videos(query)
+    results = {'spotify': spotifyApi.get_tracks(query), 'youtube': []}
+    return json.dumps(results)
 
 
 @eel.expose
-def create_playlist():
+def create_playlist() -> str:
+    """
+    Create a new playlist with a default name.
+
+    :return: JSON list of all the current playlists
+    """
     playlist = Playlist.Playlist("New Playlist " + str(len(playlists) + 1))
     playlists.append(playlist)
     print(playlists)

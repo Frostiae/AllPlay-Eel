@@ -1,6 +1,6 @@
-import eel
 import googleapiclient.discovery
 import googleapiclient.errors
+import json
 
 youtube = None
 API_KEY = 'AIzaSyCxX07j6rjmih5Exm4MFd5qtU4OgL2rIOQ'
@@ -15,13 +15,17 @@ def setup():
     print(youtube)
 
 
-def get_videos(query):
+def get_videos(query) -> str:
+    """
+    Returns a list of videos from YouTube based on the given query.
+
+    :param query: Phrase to search YouTube by
+    :return: JSON list of search YouTube search results
+    """
     request = youtube.search().list(
         part="snippet",
         maxResults=6,
         q=query
     )
-
-    print(request)
     response = request.execute()
-    print(response)
+    return response
