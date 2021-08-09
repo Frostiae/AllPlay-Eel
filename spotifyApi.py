@@ -2,8 +2,7 @@ import eel
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-spotify = spotipy.Spotify
-
+spotify = None
 
 @eel.expose
 def authorize_spotify():
@@ -17,6 +16,9 @@ def authorize_spotify():
 
 @eel.expose
 def get_tracks(query: str):
-    results = spotify.search(q=query)['tracks']['items']
-    for song in results:
-        print(song['name'])
+    if spotify:
+        results = spotify.search(q=query)['tracks']['items']
+        for song in results:
+            print(song['name'])
+    else:
+        print("Not signed into spotify.")

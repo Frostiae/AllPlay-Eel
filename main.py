@@ -1,5 +1,6 @@
 import eel
 import spotifyApi
+import youtubeApi
 import Playlist
 import json
 
@@ -8,6 +9,10 @@ import json
 eel.init('web', allowed_extensions=['.js', '.html'])
 
 playlists = []
+
+
+def initialize():
+    youtubeApi.setup()
 
 
 @eel.expose                         # Expose this function to Javascript
@@ -23,6 +28,7 @@ def pycall():
 @eel.expose
 def search(query: str):
     spotifyApi.get_tracks(query)
+    youtubeApi.get_videos(query)
 
 
 @eel.expose
@@ -33,5 +39,5 @@ def create_playlist():
     return json.dumps([pl.__dict__ for pl in playlists])
 
 
-say_hello_py('Python World!')
+initialize()
 eel.start('templates/index.html', size=(1400, 700), jinja_templates='templates', playlists=playlists)
