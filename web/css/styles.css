@@ -179,17 +179,21 @@ header > strong > span {
   vertical-align: text-bottom;
 }
 
-
 .player {
-display: flex;
-flex-direction: row;
-align-items: center;
-height: 70px;
-background-color: #1e2228;
-bottom: 0%;
-width: 100%;
-position: fixed;
-border-top: 1px solid #2d333b;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 70px;
+  background-color: #1e2228;
+  bottom: 0%;
+  width: 100%;
+  position: fixed;
+  border-top: 1px solid #2d333b;
+}
+
+.player #player {
+  display: none;
+}
 
 .playerTrack {
   background-color: #a4aab7;
@@ -198,21 +202,17 @@ border-top: 1px solid #2d333b;
   margin-left: 30px;
 }
 
-.player {
-  display: none;
-}
-
 .playerVolume {
   display:flex;
   flex-direction: row;
   width: 200px;
   margin-left: 30px;
+}
 
-  img {
-    width: 20px;
-    height: 20px;
-    padding-right: 5px;
-  }
+.playerVolume img {
+  width: 20px;
+  height: 20px;
+  padding-right: 5px;
 }
 
 .playerButtons {
@@ -221,17 +221,17 @@ border-top: 1px solid #2d333b;
   margin-left: 10px;
   padding-left: 18px;
   vertical-align: middle;
+}
 
-  img {
-    cursor: pointer;
-    margin-left: 10px;
-    width: 15px;
-    height: 20px;
-  }
+.playerButtons img {
+  cursor: pointer;
+  margin-left: 10px;
+  width: 15px;
+  height: 20px;
+}
 
-  img:hover {
-    opacity: 70%;
-  }
+.playerButtons img:hover {
+  opacity: 70%;
 }
 
 .playerInfo {
@@ -239,23 +239,22 @@ border-top: 1px solid #2d333b;
   flex-direction: row;
   margin-left: 18px;
   align-items: center;
-
-  img {
-    width: 30px;
-  }
-
-  figcaption {
-    margin-left: 10px;
-    font-style: italic;
-    font-size: 15px;
-    color: #a4aab7;
-    display: inline;
-    width: 250px;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 }
+
+.playerInfo img {
+  width: 30px;
+}
+
+.playerInfo figcaption {
+  margin-left: 10px;
+  font-style: italic;
+  font-size: 15px;
+  color: #a4aab7;
+  display: inline;
+  width: 250px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 ::-webkit-scrollbar {

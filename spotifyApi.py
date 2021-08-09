@@ -19,6 +19,7 @@ def get_tracks(query: str):
     if spotify:
         results = spotify.search(q=query)['tracks']['items']
         for song in results:
+            # Return instead of print here eventually for JS to read it in JSON
             print(song['name'])
     else:
-        print("Not signed into spotify.")
+        return False  # Read this in JS and give proper UI

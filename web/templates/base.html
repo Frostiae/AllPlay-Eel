@@ -9,27 +9,24 @@
     <script type="text/javascript" src="/eel.js"></script>
 </head>
 <body>
-      <div class="sidepanel">
-          <a href="index.html">
+    <div class="sidepanel">
+        <a href="index.html">
             <img src="../images/btn-search.png">
             <div class="sidepanelBtn">
-              Search
+                Search
             </div>
-          </a>
+        </a>
 
-          <a onclick="create_playlist()">
+        <a onclick="create_playlist()">
             <img src="../images/btn-new.png">
             <div class="sidepanelBtn">
-              New playlist
+                New playlist
             </div>
-          </a>
+        </a>
 
-          <hr>
+        <hr>
 
-          <div id="playlistscontainer">
-
-          </div>
-
+        <div id="playlistscontainer"></div>
     </div>
   {% block content %}
   {% endblock %}
