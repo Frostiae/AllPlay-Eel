@@ -35,4 +35,4 @@ def create_playlist():
 
 say_hello_py('Python World!')
 eel.say_hello_js('Python World!')   # Call a Javascript function
-eel.start('hello.html', size=(1400, 700))
+eel.start('templates/index.html', size=(1400, 700), jinja_templates='templates')

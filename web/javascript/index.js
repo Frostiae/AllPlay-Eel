@@ -5,14 +5,18 @@ searchField.addEventListener("keyup", function(e) {
     }
 })
 
-console.log(searchField);
+var playlists;
 
 function authorize_spotify() {
     eel.authorize_spotify();
 }
 
 async function create_playlist() {
-    eel.create_playlist()(function(playlists) {
-        console.log(playlists);
+    eel.create_playlist()(function(res) {
+        playlists = res;
     })
+
+    console.log(playlists);
+    const playlistlist = document.getElementById("playlistlist");
+
 }
