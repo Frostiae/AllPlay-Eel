@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700');
+
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #22272e;
+  font-family: 'Poppins';
+}
+
+h1 {
+  color: #a4aab7;
+  margin:auto;
+}
+
+hr {
+  border: 1px solid #2d333b;
+}
+
+.login {
+  float: right;
+  background-color: #a4aab7;
+  border: 0px;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 85% auto;
+    padding: 3px;
+    -webkit-app-region: drag;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #1e2228;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 23px;
+    position: sticky;
+    top:0;
+    z-index: 999;
+    border-bottom: 1px solid #2d333b;
+}
+
+header > strong {
+    color: #3f638e;
+    font-weight: bolder;
+    letter-spacing: -2px;
+}
+
+header > strong > span {
+    color: #4476ad;
+}
+
+.sidepanel {
+  width: 18%;
+  height: 100%;
+  position: fixed;
+  overflow-x: hidden;
+  padding: 15px;
+  background-color: #1e2228;
+  border-right: 1px solid #2d333b;
+  margin-right: 10px;
+  z-index: 10;
+}
+
+.sidepanelBtn {
+  display:inline;
+  font-size: 23px;
+  margin-left: 18px;
+}
+
+.sidepanel img {
+  width: 15px;
+}
+
+.sidepanel a {
+  cursor: pointer;
+  display: block;
+  color: #a4aab7;
+  width: 100%;
+  opacity: 75%;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sidepanel a:hover {
+  background-color: #2d333b;
+  opacity: 1;
+  border-radius: 10px;
+}
+
+.main .content {
+  margin-left: 20%;
+}
+
+.content .maindisplay {
+  padding: 25px;
+}
+
+.maindisplay .results {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  justify-content: space-between;
+}
+
+.results .appservice {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  width: 430px;
+}
+
+.appservice img {
+  width: 50px;
+}
+
+.appservice .resultsbox {
+  background-color: #2d333b;
+  width: 100%;
+  height: 400px;
+
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.appservice .resultsbox figure {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+  margin-right: 9px;
+  margin-left: 9px;
+  border-bottom: 1px solid #39414b;
+  padding-bottom: 8px;
+}
+
+.resultsbox figcaption {
+  margin-left: 8px;
+  display: flex;
+  flex-direction: column;
+  order: 1;
+  font-size: 20px;
+  vertical-align: top;
+  overflow-x: clip;
+}
+
+.resultsbox figcaption .figdescription {
+  font-size: 15px;
+  color:#a4aab7;
+  opacity: 50%;
+}
+
+.results .appservice figure {
+  margin-top: 25px;
+  margin-left: 0;
+}
+
+.results .appservice figcaption {
+  display: inline;
+  color: #a4aab7;
+  font-size: 28px;
+  vertical-align: text-bottom;
+}
+
+.resultitem figcaption {
+  display: inline;
+  color: #a4aab7;
+  font-size: 28px;
+  vertical-align: text-bottom;
+}
+
+
+.player {
+display: flex;
+flex-direction: row;
+align-items: center;
+height: 70px;
+background-color: #1e2228;
+bottom: 0%;
+width: 100%;
+position: fixed;
+border-top: 1px solid #2d333b;
+
+.playerTrack {
+  background-color: #a4aab7;
+  height: 2px;
+  width: 400px;
+  margin-left: 30px;
+}
+
+.player {
+  display: none;
+}
+
+.playerVolume {
+  display:flex;
+  flex-direction: row;
+  width: 200px;
+  margin-left: 30px;
+
+  img {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+  }
+}
+
+.playerButtons {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  padding-left: 18px;
+  vertical-align: middle;
+
+  img {
+    cursor: pointer;
+    margin-left: 10px;
+    width: 15px;
+    height: 20px;
+  }
+
+  img:hover {
+    opacity: 70%;
+  }
+}
+
+.playerInfo {
+  display: flex;
+  flex-direction: row;
+  margin-left: 18px;
+  align-items: center;
+
+  img {
+    width: 30px;
+  }
+
+  figcaption {
+    margin-left: 10px;
+    font-style: italic;
+    font-size: 15px;
+    color: #a4aab7;
+    display: inline;
+    width: 250px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #16181d;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1e2228;
+  background-clip: padding-box;
+  border-radius: 9999px;
+
+}
+
+input[type=text] {
+  background-color: #2d333b;
+  border: 0;
+  padding: 8px;
+  min-width: 200px;
+  color: gray;
+  font-family: 'Poppins';
+  outline: none;
+  transition: 0.15s;
+}
+
+input[type=text]:hover {
+  border-radius: 5px;
+  opacity: 0.8;
+}
+
+button:hover {
+  cursor:pointer;
+}
+
+input[type=range] {
+  height: 20px;
+  -webkit-appearance: none;
+  width: 100%;
+  background-color: transparent;
+  margin-top: -1px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #a4aab7;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 25px;
+  background: gray;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px;
+}

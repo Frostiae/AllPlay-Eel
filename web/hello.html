@@ -5,6 +5,7 @@
 
     <!-- Include eel.js - note this file doesn't exist in the 'web' directory -->
     <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
     <script type="text/javascript">
       eel.expose(say_hello_js); // Expose this function to Python
       function say_hello_js(x) {
@@ -22,7 +23,68 @@
   </head>
 
   <body>
+
+    <div class="main">
+
+      <div class="sidepanel">
+        <a href="hello.html">
+          <img src="images/btn-search.png">
+          <div class="sidepanelBtn">
+            Search
+          </div>
+        </a>
+
+        <a onclick="create_playlist()">
+          <img src="images/btn-new.png">
+          <div class="sidepanelBtn">
+            New playlist
+          </div>
+        </a>
+
+        <hr>
+
+        <!-- Add a for all playlists here -->
+
+      </div>
+
+
+      <div class="content">
+        <div class="maindisplay">
+          <input type="text" placeholder="Search for a song" value="" id="searchField">
+          <button class="login" onclick="authorize_spotify()">Login to Spotify</button>
+          <div class="results">
+
+            <div class="appservice">
+              <figure>
+                <img src="images/youtube.png">
+                <figcaption> Results </figcaption>
+              </figure>
+
+              <div class="resultsbox">
+                <!-- list foreach youtube search result here -->
+              </div>
+            </div>
+
+            <div class="appservice">
+              <figure>
+                <img src="images/spotify.png">
+                <figcaption> Results </figcaption>
+              </figure>
+
+              <div class="resultsbox">
+                <!-- list foreach youtube search result here -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     Hello chromium!
     <button onclick="callpy()">Login to spots</button>
   </body>
+
+  <script src="javascript/index.js"></script>
 </html>
