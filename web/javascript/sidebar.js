@@ -15,7 +15,8 @@ async function initialize() {
 await initialize();
 
 async function create_playlist() {
-    eel.create_playlist()(function(res) {
+    var name = prompt('Enter a title for the playlist', 'New playlist');
+    eel.create_playlist(name)(function(res) {
         playlists = JSON.parse(res);
         update_playlists_view();
     })
@@ -33,3 +34,5 @@ function update_playlists_view() {
         playlists_container.appendChild(listing);
     });
 }
+
+export { playlists }

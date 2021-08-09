@@ -7,6 +7,7 @@ var current_playlist;
 async function initialize() {
     await eel.get_current_playlist()(function(res) {
         current_playlist = JSON.parse(res);
+        console.log(current_playlist);
         update_view();
     })
 }

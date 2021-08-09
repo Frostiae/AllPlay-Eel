@@ -1,1 +1,44 @@
-[{"name": "New Playlist 1", "songs": [], "created_on": "August 09, 2021"}, {"name": "New Playlist 2", "songs": [], "created_on": "August 09, 2021"}]
+[
+   {
+      "name": "New playlist",
+      "songs": [
+         {
+            "title": "Drake - What\u2019s Next",
+            "artist": "DrakeVEVO",
+            "duration": 0,
+            "service_img_url": "../images/youtube.png",
+            "banner_url": "",
+            "link": "7EUVJaKJtBY",
+            "type": 1
+         },
+         {
+            "title": "Drake - Laugh Now Cry Later (Official Music Video) ft. Lil Durk",
+            "artist": "DrakeVEVO",
+            "duration": 0,
+            "service_img_url": "../images/youtube.png",
+            "banner_url": "",
+            "link": "JFm7YDVlqnI",
+            "type": 1
+         },
+         {
+            "title": "Kanye West - Fade (Explicit)",
+            "artist": "KanyeWestVEVO",
+            "duration": 0,
+            "service_img_url": "../images/youtube.png",
+            "banner_url": "",
+            "link": "IxGvm6btP1A",
+            "type": 1
+         },
+         {
+            "title": "Pink Panther And The Shower Battle | 35 Minute Compilation | Pink Panther &amp; Pals",
+            "artist": "Official Pink Panther",
+            "duration": 0,
+            "service_img_url": "../images/youtube.png",
+            "banner_url": "",
+            "link": "niA3u5-GF9I",
+            "type": 1
+         }
+      ],
+      "created_on": "August 09, 2021"
+   }
+]

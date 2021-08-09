@@ -15,6 +15,9 @@ class Playlist:
     def __repr__(self) -> str:
         return self.name + ", " + str(len(self.songs)) + " songs"
 
+    def __eq__(self, other):
+        return self.name == other.name
+
     def add_song(self, song: Song) -> None:
         self.songs.append(song)
 
@@ -29,4 +32,9 @@ class Playlist:
             self.songs = data['songs']
 
         self.created_on = data['created_on']
+
+    def reprJSON(self) -> dict:
+        return dict(name=self.name,
+                    songs=self.songs,
+                    created_on=self.created_on)
 

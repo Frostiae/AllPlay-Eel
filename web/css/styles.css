@@ -55,6 +55,52 @@ header > strong > span {
     color: #4476ad;
 }
 
+#addMenu {
+  display: None;
+  z-index: 100;
+}
+
+menu {
+  position:absolute;
+  display:block;
+  left:0px;
+  top:0px;
+  height:20px;
+  width:50px;
+  padding:5px;
+  margin: 0;
+  background-color: #1e2228;
+  border-bottom: 1px solid #2d333b;
+  font-weight:normal;
+  text-align: center;
+  color: #a4aab7;
+  white-space:nowrap;
+  box-shadow: 1px 5px 8px 0px #1e2228;
+}
+
+menu:hover{
+  font-weight:bold;
+}
+menu:hover > menu{
+  display:block;
+}
+menu > menu{
+  display:none;
+  position:relative;
+  top:-20px;
+  left:100%;
+  width:150px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 15px;
+}
+menu[title]:before{
+  content:attr(title);
+}
+menu:not([title]):before{
+  content:"\2630";
+}
+
 .login {
   background-color: #2d333b;
   color: #a4aab7;
