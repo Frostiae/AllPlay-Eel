@@ -4,11 +4,15 @@ import { playlists } from './sidebar.js';
 const searchField = document.getElementById("searchField")
 const youtube_results = document.getElementById("youtubeResults");
 const spotify_results = document.getElementById("spotifyResults");
+const youtube_tab = document.getElementsByClassName('tablinks')[0];
+const spotify_tab = document.getElementsByClassName('tablinks')[1];
 const loginBtn = document.getElementById('loginbtn');
-const ctxMenu = document.getElementById('ctxMenu');
 const addMenu = document.getElementById('addMenu');
 
 loginBtn.addEventListener('click', () => authorize_spotify());
+// passing in the tab itself here because I need to also call open_tab from searching.
+youtube_tab.addEventListener('click', () => open_tab(youtube_tab, 'youtubeResults'));
+spotify_tab.addEventListener('click', () => open_tab(spotify_tab, 'spotifyResults'));
 
 var logged_in_spotify = false;
 
@@ -23,6 +27,23 @@ document.addEventListener('click', () => {
     addMenu.style.left = '';
     addMenu.style.top = '';
 })
+
+function open_tab(e, tab) {
+    console.log(tab);
+    var i;
+    var tabcontents = document.getElementsByClassName('tabcontent');
+    for (i = 0; i < tabcontents.length; i++) {
+        tabcontents[i].style.display = 'none';
+    }
+
+    var tabs = document.getElementsByClassName('tablinks');
+    for (i = 0; i < tabs.length; i++) {
+        tabs[i].id = tabs[i].id.replace("active", "");
+    }
+
+    document.getElementById(tab).style.display = "block";
+    e.id = "active";
+}
 
 function authorize_spotify() {
     eel.authorize_spotify();
@@ -40,6 +61,8 @@ function search(query) {
         create_youtube_list(results['youtube']);
         create_spotify_list(results['spotify']);
     });
+
+    open_tab(youtube_tab, 'youtubeResults');
 }
 
 function create_spotify_list(results) {
@@ -91,22 +114,20 @@ function create_spotify_list(results) {
 
         var img = document.createElement('img');
         img.src = track.album.images[0].url;
-        var figcaption = document.createElement('figcaption');
-        var span = document.createElement('span');
-        span.innerText = track.name;
-        var description = document.createElement('div')
-        description.className = 'figdescription';
+        var name = document.createElement('figcaption');
+        name.innerText = track.name;
+        var description = document.createElement('figcaption')
         description.innerText = track.artists[0].name;
-        var add_btn = document.createElement('button');
-        add_btn.innerText = 'Add';
+        var duration = document.createElement('figcaption');
+        duration.innerText = '0:00';
 
         figure.appendChild(img);
-        figure.appendChild(figcaption);
-        figcaption.appendChild(span);
-        figcaption.appendChild(description);
-        figcaption.appendChild(add_btn);
+        figure.appendChild(name);
+        figure.appendChild(description);
+        figure.appendChild(duration)
 
         spotify_results.appendChild(figure);
+        spotify_results.appendChild(document.createElement('hr'));
     });
 }
 
@@ -160,28 +181,24 @@ function create_youtube_list(results) {
         var img = document.createElement('img');
         img.src = video.snippet.thumbnails.default.url;
 
-        var figcaption = document.createElement('figcaption');
-        figcaption.addEventListener('click', () => {
+        var name = document.createElement('figcaption');
+        name.addEventListener('click', () => {
             play_youtube(video.id.videoId);
         })
+        name.innerText = video.snippet.title;
 
-        var span = document.createElement('span');
-        span.innerText = video.snippet.title;
-        var description = document.createElement('div')
-        description.className = 'figdescription';
+        var description = document.createElement('figcaption')
         description.innerText = video.snippet.channelTitle;
-
-        var add_btn = document.createElement('button');
-
-        add_btn.innerText = 'Add';
+        var duration = document.createElement('figcaption');
+        duration.innerText = '0:00';
 
         figure.appendChild(img);
-        figure.appendChild(figcaption);
-        figcaption.appendChild(span);
-        figcaption.appendChild(description);
-        figcaption.appendChild(add_btn);
+        figure.appendChild(name);
+        figure.appendChild(description);
+        figure.appendChild(duration)
 
         youtube_results.appendChild(figure);
+        youtube_results.appendChild(document.createElement('hr'));
     });
 }
 

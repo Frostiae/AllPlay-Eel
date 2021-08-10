@@ -159,97 +159,70 @@ menu:not([title]):before{
 }
 
 .maindisplay .results {
+  margin-left: auto;
+  margin-top: 50px;
+}
+
+.results .tabs img {
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 32px;
+  background-color: #2d333b;
+  opacity: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tabs #active {
+  opacity: 100%;
+}
+
+.tabs img:hover {
+  opacity: 75%;
+}
+
+.results .tabcontent figure {
   display: flex;
   flex-direction: row;
-  margin-left: auto;
   justify-content: space-between;
+  color: #a4aab7;
+  margin: auto;
+  align-items: center;
+  transition: 0.1s;
 }
 
-.results .appservice {
-  display: flex;
-  flex-direction: column;
-  margin-right: 50px;
-  width: 430px;
-}
-
-.appservice img {
-  width: 50px;
-}
-
-.appservice .resultsbox {
-  background-color: #2d333b;
-  width: 100%;
+.results .tabcontent {
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
   height: 400px;
+}
 
-  text-overflow: ellipsis;
+.results .tabcontent figure:hover {
+  opacity: 75%;
+  cursor: pointer;
+  border-left: 5px solid #a4aab7;
+}
+
+.results .tabcontent figure:hover img {
+  margin-left: 5px;
+}
+
+.results .tabcontent figure figcaption {
+  flex-basis: 300px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  vertical-align: super;
   overflow-x: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 50px;
 }
 
-.appservice .resultsbox figure {
-  display: flex;
-  flex-direction: row;
-  margin-top: 15px !important;
-  margin-right: 9px;
-  margin-left: 9px !important;
-  border-bottom: 1px solid #39414b;
-  padding-bottom: 8px;
-}
-
-.resultsbox figure img {
-  order: 0;
-  width: 105px;
-}
-
-.resultsbox figure button {
-  border-radius: 0px;
-  border: 0px;
-  background-color: #a4aab7;
-  color: #39414b;
-  display: none;
-}
-
-.resultsbox figure:hover {
-  opacity: 80%;
-}
-
-.resultsbox figure:hover button {
-  display: block;
-}
-
-.resultsbox figure figcaption {
-  margin-left: 8px;
-  display: flex;
-  flex-direction: column;
-  order: 1;
-  font-size: 20px !important;
-  vertical-align: top;
-  overflow-x: clip;
-}
-
-.resultsbox figure figcaption .figdescription {
-  font-size: 15px;
-  color:#a4aab7;
-  opacity: 50%;
-}
-
-.results .appservice figure {
-  margin-top: 25px;
-  margin-left: 0;
-}
-
-.results .appservice figcaption {
-  display: inline;
-  color: #a4aab7;
-  font-size: 28px;
-  vertical-align: text-bottom;
-}
-
-.resultitem figcaption {
-  display: inline;
-  color: #a4aab7;
-  font-size: 28px;
-  vertical-align: text-bottom;
+.results .tabcontent figure img {
+  width: 50px;
+  margin-right: 20px;
 }
 
 .player {

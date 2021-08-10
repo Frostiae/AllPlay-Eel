@@ -37,6 +37,7 @@ figure {
     justify-content: space-between;
     color: #a4aab7;
     margin:auto;
+    transition: 0.1s;
 }
 
 figure img {
@@ -58,5 +59,9 @@ figure figcaption {
 figure:hover {
     cursor: pointer;
     opacity: 75%;
-    background-color: #242931;
+    border-left: 5px solid #a4aab7;
+}
+
+figure:hover img {
+    margin-left: 5px;
 }
