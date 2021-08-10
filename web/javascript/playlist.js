@@ -22,6 +22,10 @@ async function initialize() {
         console.log(current_playlist);
         update_view();
     })
+
+    if (player) {
+        player.addEventListener('onStateChange', (event) => on_youtube_state_change(event))
+    }
 }
 
 await initialize();
@@ -31,6 +35,10 @@ window.onSpotifyWebPlaybackSDKReady = () => initialize_spotify();
 var spotify_player;
 var spotify_token;
 var spotify_player_device_id;
+// For some reason the spotify web player API does not have an event for song ended, so we need this bool set on a
+// little timer to go to the next song when state.paused == true and state.position == 0 (position is 0 at the end of the song... why spotify?)
+var can_move_spotify = true;
+
 
 async function initialize_spotify() {
     console.log("Ready spotify");
@@ -52,7 +60,17 @@ async function initialize_spotify() {
         spotify_player.addListener('playback_error', ({ message }) => { console.error(message); });
       
         // Playback status updates
-        spotify_player.addListener('player_state_changed', state => { console.log(state); });
+        spotify_player.addListener('player_state_changed', state => { 
+            console.log(state); 
+            if (state.position == 0 && state.paused) {
+                console.log("track ended.");
+
+                if (can_move_spotify) {
+                    can_move_spotify = false;
+                    next_song();
+                }
+            }
+        });
       
         // Ready
         spotify_player.addListener('ready', ({ device_id }) => {
@@ -83,13 +101,31 @@ function PlaySongSpotify(link) {
     });
 }
 
+function seek_spotify() {
+    //spotify_player.seek(215 * 1000);
+}
 
 function play_current_song() {
-    if (current_song_idx > current_playlist.songs.length || current_song_idx < 0) {
+    if (current_song_idx >= current_playlist.songs.length || current_song_idx < 0) {
         current_song_idx = 0;
     }
+
+    var previous_type;
+    if (current_song) {
+        previous_type = current_song.type;
+    }
     current_song = current_playlist.songs[current_song_idx]
-    
+
+    if (current_song.type != previous_type) {
+        if (previous_type == 2) {
+            spotify_player.pause();
+        }
+        else if (previous_type == 1) {
+            player.pauseVideo();
+        }
+    }
+
+    console.log(current_song_idx)
     // YouTube
     if (current_song.type == 1) {
         PlayVideoYoutube(current_song.link);
@@ -117,6 +153,7 @@ function start_playlist() {
 }
 
 function next_song() {
+    setTimeout(() => { can_move_spotify = true; }, 2000);
     current_song_idx += 1;
     play_current_song();
 }

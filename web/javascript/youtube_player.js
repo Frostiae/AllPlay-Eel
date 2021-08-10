@@ -1,5 +1,3 @@
-
-
 var tag = document.createElement('script');
 
 tag.src = "https://www.youtube.com/iframe_api";
@@ -23,8 +21,7 @@ function createPlayer(link) {
             'autoplay': 1
         },
         events: {
-            'onReady': onPlayerReady,
-            'onStateChange': on_youtube_state_change
+            'onReady': onPlayerReady
         }
     });
 

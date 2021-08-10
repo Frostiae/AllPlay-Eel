@@ -37,6 +37,33 @@
             "banner_url": "",
             "link": "spotify:track:7fBv7CLKzipRk6EC6TWHOB",
             "type": 2
+         },
+         {
+            "title": "PinkPantheress - Passion (Official Audio)",
+            "artist": "Pinkpantheress",
+            "duration": 0,
+            "service_img_url": "../images/youtube.png",
+            "banner_url": "",
+            "link": "0Szr5Dcwn4Y",
+            "type": 1
+         },
+         {
+            "title": "PinkPantheress - Pain",
+            "artist": "Pinkpantheress",
+            "duration": 0,
+            "service_img_url": "../images/youtube.png",
+            "banner_url": "",
+            "link": "lw_XFnk5kwU",
+            "type": 1
+         },
+         {
+            "title": "Passion (16-Bit PinkPantheress Emulation)",
+            "artist": "Arcade Player",
+            "duration": 0,
+            "service_img_url": "../images/spotify.png",
+            "banner_url": "",
+            "link": "spotify:track:0bAWEYcvilmuTwGrZJlNfv",
+            "type": 2
          }
       ],
       "created_on": "August 10, 2021"
