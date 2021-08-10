@@ -16,6 +16,7 @@ start_button.addEventListener('click', () => start_playlist());
 next_button.addEventListener('click', () => next_song());
 previous_button.addEventListener('click', () => previous_song());
 volume_control.addEventListener('click', (event) => setVolume(event.target.value));
+scrubber.addEventListener('click', (event) => seek(event.target.value));
 toggle_button.addEventListener('click', () => togglePlayback());
 
 document.addEventListener('click', () => {
@@ -36,9 +37,20 @@ async function initialize() {
         update_view();
     })
 
+   setup_yt_player();
+}
+
+/**
+ * Because this script runs before youtube_player.js, we need to wait for youtube_player.js to create the player in
+ * window.onYouTubeIframeAPIReady().
+ */
+function setup_yt_player() {
     if (player) {
-        player.addEventListener('onStateChange', (event) => on_youtube_state_change(event))
+        player.addEventListener('onStateChange', (event) => on_youtube_state_change(event));
+    } else {
+        setTimeout(setup_yt_player, 3000);
     }
+
 }
 
 await initialize();
@@ -116,7 +128,6 @@ function PlaySongSpotify(link) {
 }
 
 function update_track() {
-    //console.log(scrubber.value);
     if (!paused) {
         if (current_song) {
             if (current_song.type == 1 && player) {
@@ -129,7 +140,7 @@ function update_track() {
 
             else if (current_song.type == 2 && spotify_player) {
                 spotify_player.getCurrentState().then(state => {
-                    if (state.position != 0) {
+                    if (state && state.position != 0) {
                         scrubber.value = (state.position / state.duration) * 100
                     }
                 })
@@ -140,8 +151,22 @@ function update_track() {
     setTimeout(update_track, 1000);
 }
 
-function seek_spotify() {
-    //spotify_player.seek(215 * 1000);
+function seek(value) {
+    if (current_song) {
+        if (current_song.type == 1 && player) {
+            if (player.getDuration && player.seekTo) {
+                player.seekTo(player.getDuration() * (value / 100));
+            }
+        }
+
+        else if (current_song.type == 2 && spotify_player) {
+            spotify_player.getCurrentState().then(state => {
+                if (state) {
+                    spotify_player.seek(state.duration * (value / 100))
+                }
+            })
+        }
+    }
 }
 
 function togglePlayback() {
@@ -164,7 +189,7 @@ function togglePlayback() {
 }
 
 function setVolume(value) {
-    if (player)
+    if (player && player.setVolume)
         player.setVolume(value);
     
     if (spotify_player)
@@ -229,6 +254,7 @@ function update_player_view() {
 }
 
 function on_youtube_state_change(event) {
+    console.log(event);
     // Song ended
     if (event.data == 0) {
         next_song();

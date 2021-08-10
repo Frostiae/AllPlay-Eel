@@ -8,6 +8,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //    after the API code downloads.
 window.onYouTubeIframeAPIReady = () => {
   console.log("Youtube API ready!");
+  createPlayer();
 }
 
 var player;
@@ -15,7 +16,7 @@ function createPlayer(link) {
     player = new YT.Player('player', {
         height: '0',
         width: '0',
-        videoId: link,
+        videoId: !link ? '' : link,
         playerVars: {
             'playsinline': 1,
             'autoplay': 1
