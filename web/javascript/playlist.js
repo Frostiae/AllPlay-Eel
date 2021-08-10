@@ -26,6 +26,45 @@ async function initialize() {
 
 await initialize();
 
+window.onSpotifyWebPlaybackSDKReady = () => initialize_spotify();
+
+async function initialize_spotify() {
+    console.log("Ready spotify");
+    await eel.get_spotify_token()(function(res) {
+        console.log(res);
+
+
+        const token = res;
+        const player = new Spotify.Player({
+          name: 'Web Playback SDK Quick Start Player',
+          getOAuthToken: cb => { cb(token); }
+        });
+      
+        // Error handling
+        player.addListener('initialization_error', ({ message }) => { console.error(message); });
+        player.addListener('authentication_error', ({ message }) => { console.error(message); });
+        player.addListener('account_error', ({ message }) => { console.error(message); });
+        player.addListener('playback_error', ({ message }) => { console.error(message); });
+      
+        // Playback status updates
+        player.addListener('player_state_changed', state => { console.log(state); });
+      
+        // Ready
+        player.addListener('ready', ({ device_id }) => {
+          console.log('Ready with Device ID', device_id);
+        });
+      
+        // Not Ready
+        player.addListener('not_ready', ({ device_id }) => {
+          console.log('Device ID has gone offline', device_id);
+        });
+      
+        // Connect to the player!
+        player.connect();
+          
+    })
+}
+
 
 function play_current_song() {
     if (current_song_idx > current_playlist.songs.length || current_song_idx < 0) {
@@ -42,7 +81,10 @@ function play_current_song() {
 }
 
 function on_youtube_state_change(event) {
-    console.log('Current YT video state: ', event.data);
+    // Song ended
+    if (event.data == 0) {
+        next_song();
+    }
 }
 
 
@@ -101,6 +143,3 @@ function update_view() {
         });
     }
 }
-
-
-export { on_youtube_state_change }

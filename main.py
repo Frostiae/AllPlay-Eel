@@ -28,6 +28,7 @@ def initialize():
         settings.close()
 
     youtubeApi.setup()
+    spotifyApi.authorize_spotify()
 
 
 @eel.expose
@@ -86,4 +87,4 @@ def add_song_to_playlist(playlist, song) -> None:
 
 
 initialize()
-eel.start('templates/index.html', size=(1400, 700), jinja_templates='templates', playlists=playlists)
+eel.start('templates/index.html', size=(1400, 700), jinja_templates='templates')

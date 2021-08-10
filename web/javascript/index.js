@@ -29,7 +29,6 @@ document.addEventListener('click', () => {
 })
 
 function open_tab(e, tab) {
-    console.log(tab);
     var i;
     var tabcontents = document.getElementsByClassName('tabcontent');
     for (i = 0; i < tabcontents.length; i++) {
