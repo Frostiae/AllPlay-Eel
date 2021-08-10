@@ -1,3 +1,5 @@
+import { on_youtube_state_change } from './playlist.js';
+
 var tag = document.createElement('script');
 
 tag.src = "https://www.youtube.com/iframe_api";
@@ -22,7 +24,7 @@ function createPlayer(link) {
         },
         events: {
             'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
+            'onStateChange': on_youtube_state_change
         }
     });
 
@@ -31,10 +33,6 @@ function createPlayer(link) {
 
 function onPlayerReady(event) {
     event.target.playVideo();
-}
-
-function onPlayerStateChange(event) {
-    console.log('Current video state: ', event.data);
 }
 
 function pausePlay() {
@@ -52,4 +50,12 @@ function loadVideo(link) {
     player.loadVideoById(link);
 }
 
-export { player, loadVideo, createPlayer };
+function PlayVideoYoutube(link) {
+    if (!player) {
+        createPlayer(link);
+    } else {
+        loadVideo(link);
+    }
+}
+
+export { player, loadVideo, createPlayer, PlayVideoYoutube };

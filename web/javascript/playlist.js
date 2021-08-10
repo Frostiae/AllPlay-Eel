@@ -1,8 +1,19 @@
+import { player, loadVideo, createPlayer, PlayVideoYoutube } from './youtube_player.js';
+
 const playlist_title = document.getElementById('playlistTitle');
 const playlist_info = document.getElementsByClassName('playlistInfo')[0];
 const playlist_songs = document.getElementsByClassName('playlistSongs')[0];
+const start_button = document.getElementById('startBtn');
+const next_button = document.getElementById('nextBtn');
+const previous_button = document.getElementById('previousBtn');
+
+start_button.addEventListener('click', () => start_playlist());
+next_button.addEventListener('click', () => next_song());
+previous_button.addEventListener('click', () => previous_song());
 
 var current_playlist;
+var current_song;
+var current_song_idx = 0;
 
 // This does not update correctly on the first time... FIGURE OUT WHY!
 async function initialize() {
@@ -16,10 +27,45 @@ async function initialize() {
 await initialize();
 
 
+function play_current_song() {
+    if (current_song_idx > current_playlist.songs.length || current_song_idx < 0) {
+        current_song_idx = 0;
+    }
+    current_song = current_playlist.songs[current_song_idx]
+    
+    // YouTube
+    if (current_song.type == 1) {
+        PlayVideoYoutube(current_song.link);
+    }
+
+    console.log(current_song);
+}
+
+function on_youtube_state_change(event) {
+    console.log('Current YT video state: ', event.data);
+}
+
+
+function start_playlist() {
+    current_song_idx = 0;
+    play_current_song();
+}
+
+function next_song() {
+    current_song_idx += 1;
+    play_current_song();
+}
+
+function previous_song() {
+    current_song_idx -= 1;
+    play_current_song();
+}
+
+
 function update_view() {
     playlist_title.insertAdjacentText("afterbegin", current_playlist.name);
     playlist_info.innerText = 'Created on ' + current_playlist.created_on;
-    // Add entire duration of playlist here
+    // Todo: Add entire duration of playlist here
 
     // add songs
     if (current_playlist.songs.length == 0) {
@@ -54,6 +100,7 @@ function update_view() {
             figure.appendChild(duration);
         });
     }
-
-
 }
+
+
+export { on_youtube_state_change }

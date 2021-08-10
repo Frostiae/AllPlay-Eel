@@ -1,4 +1,4 @@
-import { player, loadVideo, createPlayer } from './youtube_player.js';
+import { player, loadVideo, createPlayer, PlayVideoYoutube } from './youtube_player.js';
 import { playlists } from './sidebar.js';
 
 const searchField = document.getElementById("searchField")
@@ -183,7 +183,7 @@ function create_youtube_list(results) {
 
         var name = document.createElement('figcaption');
         name.addEventListener('click', () => {
-            play_youtube(video.id.videoId);
+            PlayVideoYoutube(video.id.videoId);
         })
         name.innerText = video.snippet.title;
 
@@ -200,12 +200,4 @@ function create_youtube_list(results) {
         youtube_results.appendChild(figure);
         youtube_results.appendChild(document.createElement('hr'));
     });
-}
-
-function play_youtube(link) {
-    if (!player) {
-        createPlayer(link);
-    } else {
-        loadVideo(link);
-    }
 }
