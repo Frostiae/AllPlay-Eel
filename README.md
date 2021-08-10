@@ -19,7 +19,7 @@ This project is built on the eel library using Chromium. The purpose is to build
 - [x] Next
 - [x] Previous
 - [x] Volume control
-- [ ] Time seeking
+- [x] Time seeking
 - [ ] Repeating songs
 - [ ] Shuffling playlists
 
