@@ -1,7 +1,7 @@
 # All-In-One playlist
 This project is built on the eel library using Chromium. The purpose is to build playlists containing various songs from multiple services such as YouTube, Spotify, and more to come.
 
-![Interface](https://i.imgur.com/RQp5ewT.png)
+![Interface](https://i.imgur.com/SfS0kQn.png)
 
 # Todo list
 ### API Support
