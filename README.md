@@ -11,7 +11,7 @@ This project is built on the eel library using Chromium. The purpose is to build
 
 ### Players
 - [x] YouTube player
-- [ ] Spotify player
+- [x] Spotify player
 - [ ] Soundcloud player
 
 ### Player control
