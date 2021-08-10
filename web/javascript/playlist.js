@@ -28,41 +28,59 @@ await initialize();
 
 window.onSpotifyWebPlaybackSDKReady = () => initialize_spotify();
 
+var spotify_player;
+var spotify_token;
+var spotify_player_device_id;
+
 async function initialize_spotify() {
     console.log("Ready spotify");
     await eel.get_spotify_token()(function(res) {
         console.log(res);
+        spotify_token = res;
 
-
-        const token = res;
-        const player = new Spotify.Player({
-          name: 'Web Playback SDK Quick Start Player',
-          getOAuthToken: cb => { cb(token); }
+        //const token = res;
+        spotify_player = new Spotify.Player({
+          name: 'AllPlay',
+          getOAuthToken: cb => { cb(spotify_token); },
+          volume: 0.5
         });
       
         // Error handling
-        player.addListener('initialization_error', ({ message }) => { console.error(message); });
-        player.addListener('authentication_error', ({ message }) => { console.error(message); });
-        player.addListener('account_error', ({ message }) => { console.error(message); });
-        player.addListener('playback_error', ({ message }) => { console.error(message); });
+        spotify_player.addListener('initialization_error', ({ message }) => { console.error(message); });
+        spotify_player.addListener('authentication_error', ({ message }) => { console.error(message); });
+        spotify_player.addListener('account_error', ({ message }) => { console.error(message); });
+        spotify_player.addListener('playback_error', ({ message }) => { console.error(message); });
       
         // Playback status updates
-        player.addListener('player_state_changed', state => { console.log(state); });
+        spotify_player.addListener('player_state_changed', state => { console.log(state); });
       
         // Ready
-        player.addListener('ready', ({ device_id }) => {
+        spotify_player.addListener('ready', ({ device_id }) => {
           console.log('Ready with Device ID', device_id);
+          spotify_player_device_id = device_id
         });
       
         // Not Ready
-        player.addListener('not_ready', ({ device_id }) => {
+        spotify_player.addListener('not_ready', ({ device_id }) => {
           console.log('Device ID has gone offline', device_id);
         });
       
         // Connect to the player!
-        player.connect();
-          
+        spotify_player.connect();
+        console.log(spotify_player);
     })
+}
+
+function PlaySongSpotify(link) {
+    console.log("Attempting to play song...");
+    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${spotify_player_device_id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ uris: [link] }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${spotify_token}`
+      },
+    });
 }
 
 
@@ -75,6 +93,11 @@ function play_current_song() {
     // YouTube
     if (current_song.type == 1) {
         PlayVideoYoutube(current_song.link);
+    }
+
+    // Spotify
+    else if (current_song.type == 2) {
+        PlaySongSpotify(current_song.link);
     }
 
     console.log(current_song);

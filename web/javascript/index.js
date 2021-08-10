@@ -97,7 +97,7 @@ function create_spotify_list(results) {
                         'duration': 0,
                         'service_img_url': '../images/spotify.png',
                         'banner_url': '', // todo
-                        'link': '', // todo
+                        'link': track.uri, // todo
                         'type': 2 // 2 = Spotify
                     };
 

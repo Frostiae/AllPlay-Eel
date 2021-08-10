@@ -1,185 +1,44 @@
 [
    {
-      "name": "Tunies",
+      "name": "Spotz",
       "songs": [
          {
-            "title": "Drake - What\u2019s Next",
-            "artist": "DrakeVEVO",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "7EUVJaKJtBY",
-            "type": 1
-         },
-         {
-            "title": "Drake - Laugh Now Cry Later (Official Music Video) ft. Lil Durk",
-            "artist": "DrakeVEVO",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "JFm7YDVlqnI",
-            "type": 1
-         },
-         {
-            "title": "Drake &quot;Certified Lover Boy&quot; Waiting Party",
-            "artist": "Culture Link",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "cRlxk45_CLU",
-            "type": 1
-         },
-         {
-            "title": "Smiley - Over The Top (feat. Drake) [Official Audio]",
-            "artist": "Smiley",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "qaqvwkhelS8",
-            "type": 1
-         },
-         {
-            "title": "PinkPantheress - Passion (Official Audio)",
-            "artist": "Pinkpantheress",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "0Szr5Dcwn4Y",
-            "type": 1
-         },
-         {
-            "title": "PinkPantheress - Pain",
-            "artist": "Pinkpantheress",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "lw_XFnk5kwU",
-            "type": 1
-         },
-         {
-            "title": "pinkpantheress - Just For Me (Lyrics) &quot;when you wipe your tears do you wipe them just for me&quot;",
-            "artist": "Revive Music",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "Q0eOFCbsc8k",
-            "type": 1
-         },
-         {
-            "title": "\ud835\ude4b\ud835\ude5e\ud835\ude63\ud835\ude60 \ud835\ude4b\ud835\ude56\ud835\ude63\ud835\ude69\ud835\ude5d\ud835\ude5a\ud835\ude67\ud835\ude5a\ud835\ude68\ud835\ude68 \ud835\ude48\ud835\ude5e\ud835\ude6d \u2122",
-            "artist": "\u2625",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "yFKRQqwCQQM",
-            "type": 1
-         },
-         {
-            "title": "Kanye West - Famous",
-            "artist": "KanyeWestVEVO",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "p7FCgw_GlWc",
-            "type": 1
-         },
-         {
-            "title": "Kanye West - Fade (Explicit)",
-            "artist": "KanyeWestVEVO",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "IxGvm6btP1A",
-            "type": 1
-         },
-         {
-            "title": "Kanye West Greatest Hits",
-            "artist": "Reggie Man",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": null,
-            "type": 1
-         },
-         {
-            "title": "Kanye West - Good Morning",
-            "artist": "KanyeWestVEVO",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "6CHs4x2uqcQ",
-            "type": 1
-         },
-         {
-            "title": "Kanye West - Follow God",
-            "artist": "KanyeWestVEVO",
-            "duration": 0,
-            "service_img_url": "../images/youtube.png",
-            "banner_url": "",
-            "link": "ivCY3Ec4iaU",
-            "type": 1
-         },
-         {
-            "title": "I Like Me Better",
-            "artist": "Lauv",
+            "title": "Take My Breath",
+            "artist": "The Weeknd",
             "duration": 0,
             "service_img_url": "../images/spotify.png",
             "banner_url": "",
-            "link": "",
+            "link": "spotify:track:6OGogr19zPTM4BALXuMQpF",
             "type": 2
          },
          {
-            "title": "i'm so tired...",
-            "artist": "Lauv",
+            "title": "Earned It (Fifty Shades Of Grey)",
+            "artist": "The Weeknd",
             "duration": 0,
             "service_img_url": "../images/spotify.png",
             "banner_url": "",
-            "link": "",
+            "link": "spotify:track:4frLb7nWtsz2ymBE6k2GRP",
             "type": 2
          },
          {
-            "title": "Fake",
-            "artist": "Lauv",
+            "title": "Save Your Tears",
+            "artist": "The Weeknd",
             "duration": 0,
             "service_img_url": "../images/spotify.png",
             "banner_url": "",
-            "link": "",
+            "link": "spotify:track:5QO79kh1waicV47BqGRL3g",
             "type": 2
          },
          {
-            "title": "Who (feat. BTS)",
-            "artist": "Lauv",
+            "title": "The Hills",
+            "artist": "The Weeknd",
             "duration": 0,
             "service_img_url": "../images/spotify.png",
             "banner_url": "",
-            "link": "",
-            "type": 2
-         },
-         {
-            "title": "Never Not",
-            "artist": "Lauv",
-            "duration": 0,
-            "service_img_url": "../images/spotify.png",
-            "banner_url": "",
-            "link": "",
+            "link": "spotify:track:7fBv7CLKzipRk6EC6TWHOB",
             "type": 2
          }
       ],
-      "created_on": "August 09, 2021"
-   },
-   {
-      "name": "Hype",
-      "songs": [],
-      "created_on": "August 09, 2021"
-   },
-   {
-      "name": "New playlist",
-      "songs": [],
-      "created_on": "August 09, 2021"
-   },
-   {
-      "name": "Energy",
-      "songs": [],
-      "created_on": "August 09, 2021"
+      "created_on": "August 10, 2021"
    }
 ]
