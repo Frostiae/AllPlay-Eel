@@ -147,7 +147,7 @@ function create_youtube_list(results) {
 
     results.items.forEach(video => {
         if (video.id.kind != 'youtube#video') {
-            continue;
+            return;
         }
 
         var figure = document.createElement('figure');

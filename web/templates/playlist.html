@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 <link rel="stylesheet" href="../css/playlist-styles.css">
+
+<menu title="Remove" id="removeMenu">
+</menu>
+
 <div class="main">
-
-
     <div class="content">
       <div class="maindisplay">
         <div class="playlistHeader">
@@ -33,6 +35,7 @@
         </div>
 
         <div class="playerTrack">
+          <input type="range" id="scrubber" value="0">
             <div id="player"></div>
         </div>
 

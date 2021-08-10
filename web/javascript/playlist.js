@@ -1,5 +1,6 @@
 import { player, loadVideo, createPlayer, PlayVideoYoutube, toggleYoutubePlayback } from './youtube_player.js';
 
+const remove_menu = document.getElementById('removeMenu');
 const playlist_title = document.getElementById('playlistTitle');
 const playlist_info = document.getElementsByClassName('playlistInfo')[0];
 const playlist_songs = document.getElementsByClassName('playlistSongs')[0];
@@ -9,12 +10,19 @@ const toggle_button = document.getElementById('playBtn');
 const previous_button = document.getElementById('previousBtn');
 const player_info = document.getElementsByClassName('playerInfo')[0];
 const volume_control = document.getElementById('volume-control');
+const scrubber = document.getElementById('scrubber');
 
 start_button.addEventListener('click', () => start_playlist());
 next_button.addEventListener('click', () => next_song());
 previous_button.addEventListener('click', () => previous_song());
 volume_control.addEventListener('click', (event) => setVolume(event.target.value));
 toggle_button.addEventListener('click', () => togglePlayback());
+
+document.addEventListener('click', () => {
+    remove_menu.style.display = '';
+    remove_menu.style.left = '';
+    remove_menu.style.top = '';
+})
 
 var current_playlist;
 var current_song;
@@ -107,6 +115,31 @@ function PlaySongSpotify(link) {
     });
 }
 
+function update_track() {
+    //console.log(scrubber.value);
+    if (!paused) {
+        if (current_song) {
+            if (current_song.type == 1 && player) {
+                var pos = !player.getCurrentTime ? 0.0 : player.getCurrentTime();
+                var duration = !player.getDuration ? 0.0 : player.getDuration();
+                if (duration != 0) {
+                    scrubber.value = pos / duration * 100
+                }
+            }
+
+            else if (current_song.type == 2 && spotify_player) {
+                spotify_player.getCurrentState().then(state => {
+                    if (state.position != 0) {
+                        scrubber.value = (state.position / state.duration) * 100
+                    }
+                })
+            }
+        }
+    }
+
+    setTimeout(update_track, 1000);
+}
+
 function seek_spotify() {
     //spotify_player.seek(215 * 1000);
 }
@@ -171,6 +204,7 @@ function play_current_song() {
     console.log(current_song);
 
     update_player_view();
+    update_track();
 
     /* I would do this, but the YouTube API does not have a way to obtain the channel's banner image URL :/
     body.style.background = 'linear-gradient(180deg, rgba(30,34,40,0.5) -30%, rgba(34,39,46,1) 45%), url("https://yt3.ggpht.com/N_-lXcK6MdKwjrXQMdPbEabFwcdudvpy2p-Xmeqa-TkSGFrGRs3txwJzlx38BfF8zrNR9izN=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj")';
@@ -239,6 +273,22 @@ function update_view() {
         current_playlist.songs.forEach(song => {        
             var hr = document.createElement('hr');
             var figure = document.createElement('figure');
+
+            /*  This is not going to work, because every time we right click a song, the event listener for the remove 
+            /*  menu now also conatins that song, so once we go to remove, it will try to remove every song that has
+            /*  been right clicked. removeEventListener() does not seem to clear them properly either.
+            figure.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
+                
+                remove_menu.innerHTML = '';
+                remove_menu.addEventListener('click', () => remove_song(song));
+
+                remove_menu.style.display = 'block';
+                remove_menu.style.left = (event.pageX - 10) + 'px';
+                remove_menu.style.top = (event.pageY - 10) + 'px';
+            })
+            */
+
             var img = document.createElement('img');
             img.src = song.service_img_url;
             var name = document.createElement('figcaption');
@@ -257,4 +307,8 @@ function update_view() {
             figure.appendChild(duration);
         });
     }
+}
+
+function remove_song(song) {
+    console.log('removing ' + song.title)
 }

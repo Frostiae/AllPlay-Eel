@@ -22,3 +22,8 @@ This project is built on the eel library using Chromium. The purpose is to build
 - [ ] Time seeking
 - [ ] Repeating songs
 - [ ] Shuffling playlists
+
+### Playlist control
+- [x] Adding songs to a playlist
+- [ ] Removing songs from a playlist
+- [x] Playing through a playlist

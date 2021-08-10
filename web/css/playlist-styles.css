@@ -31,6 +31,12 @@ h1 > img:hover {
     margin-left: initial;
 }
 
+#removeMenu {
+    display: None;
+    z-index: 100;
+    width: 100px;
+}
+
 .playerInfo figure figcaption {
     overflow: hidden;
     white-space: nowrap;
