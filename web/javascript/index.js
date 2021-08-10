@@ -146,6 +146,10 @@ function create_youtube_list(results) {
     }
 
     results.items.forEach(video => {
+        if (video.id.kind != 'youtube#video') {
+            continue;
+        }
+
         var figure = document.createElement('figure');
 
         // Context menu stuff for adding songs
@@ -181,9 +185,6 @@ function create_youtube_list(results) {
         img.src = video.snippet.thumbnails.default.url;
 
         var name = document.createElement('figcaption');
-        name.addEventListener('click', () => {
-            PlayVideoYoutube(video.id.videoId);
-        })
         name.innerText = video.snippet.title;
 
         var description = document.createElement('figcaption')

@@ -32,7 +32,7 @@ function onPlayerReady(event) {
     event.target.playVideo();
 }
 
-function pausePlay() {
+function toggleYoutubePlayback() {
     if (player) {
         const state = player.getPlayerState();
         if (state == 1 || state == 3) {
@@ -55,4 +55,4 @@ function PlayVideoYoutube(link) {
     }
 }
 
-export { player, loadVideo, createPlayer, PlayVideoYoutube };
+export { player, loadVideo, createPlayer, PlayVideoYoutube, toggleYoutubePlayback };

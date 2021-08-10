@@ -12,6 +12,7 @@ html, body {
 body {
   background: linear-gradient(180deg, rgba(30,34,40,1) 0%, rgba(34,39,46,1) 100%);
   font-family: 'Poppins';
+  transition: 0.2s;
 }
 
 h1 {

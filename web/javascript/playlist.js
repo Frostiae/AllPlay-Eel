@@ -1,15 +1,20 @@
-import { player, loadVideo, createPlayer, PlayVideoYoutube } from './youtube_player.js';
+import { player, loadVideo, createPlayer, PlayVideoYoutube, toggleYoutubePlayback } from './youtube_player.js';
 
 const playlist_title = document.getElementById('playlistTitle');
 const playlist_info = document.getElementsByClassName('playlistInfo')[0];
 const playlist_songs = document.getElementsByClassName('playlistSongs')[0];
 const start_button = document.getElementById('startBtn');
 const next_button = document.getElementById('nextBtn');
+const toggle_button = document.getElementById('playBtn');
 const previous_button = document.getElementById('previousBtn');
+const player_info = document.getElementsByClassName('playerInfo')[0];
+const volume_control = document.getElementById('volume-control');
 
 start_button.addEventListener('click', () => start_playlist());
 next_button.addEventListener('click', () => next_song());
 previous_button.addEventListener('click', () => previous_song());
+volume_control.addEventListener('click', (event) => setVolume(event.target.value));
+toggle_button.addEventListener('click', () => togglePlayback());
 
 var current_playlist;
 var current_song;
@@ -34,6 +39,7 @@ window.onSpotifyWebPlaybackSDKReady = () => initialize_spotify();
 
 var spotify_player;
 var spotify_token;
+var paused = false;
 var spotify_player_device_id;
 // For some reason the spotify web player API does not have an event for song ended, so we need this bool set on a
 // little timer to go to the next song when state.paused == true and state.position == 0 (position is 0 at the end of the song... why spotify?)
@@ -105,6 +111,33 @@ function seek_spotify() {
     //spotify_player.seek(215 * 1000);
 }
 
+function togglePlayback() {
+    if (current_song) {
+        if (current_song.type == 1 && player) {
+            toggleYoutubePlayback();
+        }
+        else if (current_song.type == 2 && spotify_player) {
+            spotify_player.togglePlay();
+        }
+
+        paused = !paused;
+    }
+
+    if (paused) {
+        toggle_button.src = '../images/btn-play.png';
+    } else {
+        toggle_button.src= '../images/btn-pause.png';
+    }
+}
+
+function setVolume(value) {
+    if (player)
+        player.setVolume(value);
+    
+    if (spotify_player)
+        spotify_player.setVolume(value / 100);
+}
+
 function play_current_song() {
     if (current_song_idx >= current_playlist.songs.length || current_song_idx < 0) {
         current_song_idx = 0;
@@ -125,7 +158,6 @@ function play_current_song() {
         }
     }
 
-    console.log(current_song_idx)
     // YouTube
     if (current_song.type == 1) {
         PlayVideoYoutube(current_song.link);
@@ -137,6 +169,29 @@ function play_current_song() {
     }
 
     console.log(current_song);
+
+    update_player_view();
+
+    /* I would do this, but the YouTube API does not have a way to obtain the channel's banner image URL :/
+    body.style.background = 'linear-gradient(180deg, rgba(30,34,40,0.5) -30%, rgba(34,39,46,1) 45%), url("https://yt3.ggpht.com/N_-lXcK6MdKwjrXQMdPbEabFwcdudvpy2p-Xmeqa-TkSGFrGRs3txwJzlx38BfF8zrNR9izN=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj")';
+    body.style.backgroundPosition = '30% 65%';
+    */
+}
+
+function update_player_view() {
+    toggle_button.src= '../images/btn-pause.png';
+    paused = false;
+    player_info.innerHTML = '';
+
+    var figure = document.createElement('figure');
+    var img = document.createElement('img');
+    img.src = current_song.service_img_url;
+    var figcaption = document.createElement('figcaption');
+    figcaption.innerText = current_song.title;
+
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+    player_info.appendChild(figure);
 }
 
 function on_youtube_state_change(event) {
